@@ -49,7 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def additional_user_params
-    [:firstname, :lastname]
+    [:firstname, :lastname, :phone, :dob]
   end
 
   # The path used after sign up.

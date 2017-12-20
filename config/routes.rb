@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'users/index'
-
+  resources :team_roles
+  resources :team_user_roles
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     passwords: 'users/passwords',
@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   resources :users
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :teams do
+    end
+
   root to: "users#index"
 end

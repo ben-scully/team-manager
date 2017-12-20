@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130233730) do
+ActiveRecord::Schema.define(version: 20171220202615) do
+
+  create_table "team_roles", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "team_user_roles", force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.integer "user_id", null: false
+    t.integer "team_role_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_team_user_roles_on_team_id"
+    t.index ["team_role_id"], name: "index_team_user_roles_on_team_role_id"
+    t.index ["user_id"], name: "index_team_user_roles_on_user_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,6 +50,8 @@ ActiveRecord::Schema.define(version: 20171130233730) do
     t.datetime "updated_at", null: false
     t.string "firstname", default: "", null: false
     t.string "lastname", default: "", null: false
+    t.string "phone", default: "", null: false
+    t.datetime "dob"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

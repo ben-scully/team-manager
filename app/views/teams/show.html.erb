@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Team</h1>
+
+<p>
+  <strong>Display Name:</strong>
+  <%= @team.display_name %>
+</p>
+
+<h2>Members</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Display Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @team.members.each do |user| %>
+      <tr>
+        <td><%= user.display_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Players</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Display Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @team.players.each do |user| %>
+      <tr>
+        <td><%= user.display_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Add Player', { controller: 'team_members', action: 'new', team_id: @team } %>
+
+<h2>Coaches</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Display Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @team.coaches.each do |user| %>
+      <tr>
+        <td><%= user.display_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Managers</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Display Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @team.managers.each do |user| %>
+      <tr>
+        <td><%= user.display_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_team_path(@team) %> |
+<%= link_to 'Back', teams_path %>
