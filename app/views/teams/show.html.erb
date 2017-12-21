@@ -7,6 +7,8 @@
   <%= @team.display_name %>
 </p>
 
+<%= link_to 'Add TeamUserRole', { controller: 'team_user_roles', action: 'new', team_id: @team } %>
+
 <h2>Members</h2>
 
 <table>
@@ -44,8 +46,6 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'Add Player', { controller: 'team_members', action: 'new', team_id: @team } %>
 
 <h2>Coaches</h2>
 

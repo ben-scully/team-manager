@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :team_user_roles
+  has_many :teams, through: :team_user_roles
 
   def display_name
     "#{firstname} #{lastname}"

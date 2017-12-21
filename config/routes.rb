@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'events/new'
+
+  get 'events/edit'
+
+  get 'events/show'
+
+  get 'events/index'
+
+  resources :team_events
+  resources :events
   resources :team_roles
   resources :team_user_roles
   devise_for :users, controllers: {

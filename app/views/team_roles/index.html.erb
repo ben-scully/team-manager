@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Display Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +13,7 @@
   <tbody>
     <% @team_roles.each do |team_role| %>
       <tr>
+        <td><%= team_role.display_name %></td>
         <td><%= link_to 'Show', team_role %></td>
         <td><%= link_to 'Edit', edit_team_role_path(team_role) %></td>
         <td><%= link_to 'Destroy', team_role, method: :delete, data: { confirm: 'Are you sure?' } %></td>

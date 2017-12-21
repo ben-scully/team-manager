@@ -62,13 +62,14 @@ class TeamRolesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_team_role
-      @team_role = TeamRole.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def team_role_params
-      params.fetch(:team_role, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_team_role
+    @team_role = TeamRole.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def team_role_params
+    params.require(:team_role).permit(:name)
+  end
 end

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Display Name:</strong>
+  <%= @user.display_name %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+
+<h2>Teams</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>TeamName</th>
+      <% TeamRole.all.distinct.each do |role| %>
+        <th>Role</th>
+      <% end %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.teams.distinct.each do |team| %>
+      <tr>
+        <td><%= team.display_name %></td>
+        <% team.roles_by_user(@user).each do |role| %>
+          <td><%= role.display_name %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
