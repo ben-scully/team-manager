@@ -10,48 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221024636) do
+ActiveRecord::Schema.define(version: 20171228092633) do
 
-  create_table "events", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "start", null: false
-    t.string "location", null: false
-    t.integer "team_event_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["team_event_id"], name: "index_events_on_team_event_id"
-  end
-
-  create_table "team_events", force: :cascade do |t|
-    t.integer "team_id", null: false
-    t.integer "event_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_team_events_on_event_id"
-    t.index ["team_id"], name: "index_team_events_on_team_id"
-  end
-
-  create_table "team_roles", force: :cascade do |t|
+  create_table "squads", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "team_user_roles", force: :cascade do |t|
-    t.integer "team_id", null: false
-    t.integer "user_id", null: false
-    t.integer "team_role_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["team_id"], name: "index_team_user_roles_on_team_id"
-    t.index ["team_role_id"], name: "index_team_user_roles_on_team_role_id"
-    t.index ["user_id"], name: "index_team_user_roles_on_user_id"
-  end
-
-  create_table "teams", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "squads_users", id: false, force: :cascade do |t|
+    t.integer "squad_id"
+    t.integer "user_id"
+    t.index ["squad_id"], name: "index_squads_users_on_squad_id"
+    t.index ["user_id"], name: "index_squads_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

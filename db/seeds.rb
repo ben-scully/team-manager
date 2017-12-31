@@ -1,49 +1,89 @@
 
-steve = User.create!(
-  :firstname => "steve",
-  :lastname => "hansen",
-  :phone => "0800allblacks",
-  :dob => "2000-12-21",
-  :email => "steve@hansen.com",
-  :password => "steve123"
-)
-lucy = User.create!(
-  :firstname => "lucy",
-  :lastname => "lawless",
-  :phone => "0800xena",
-  :dob => "2000-12-21",
-  :email => "lucy@lawless.com",
-  :password => "lucy123"
-)
-brian = User.create!(
-  :firstname => "brian",
-  :lastname => "grumble",
-  :phone => "0800brian",
-  :dob => "2000-12-21",
-  :email => "brian@grumble.com",
-  :password => "brian123"
-)
+user_list = [
+  "Cam Ferreria",
+  "Matt Wilkes",
+  "Tammy Ferreria",
+  "Michael Poa",
+  "Ben Scully",
+  "Lisa Emery",
+  "Chris Jospeh",
+  "Ruth Prime",
+  "Anaru Kupa",
+  "Arahina Roberts",
+  "Bron Jahnke",
+  "Calin Erueti",
+  "Dez Searancke",
+  "Jaimee Bialy",
+  "Jay Masters",
+  "Kahu Gray",
+  "Katie Brown",
+  "Kitty Aofia",
+  "Kylah Roundtree",
+  "Noah Lindstrom",
+  "Pania Gray",
+  "Pete Hazelman",
+  "Scott Turner",
+  "Sonia Steckler",
+  "Tiana Wilson",
+  "Zoe Ferreria",
+  "Ariana Gray",
+  "Ben Grenfell",
+  "George Jahnke",
+  "Rhion Smith",
+  "Manea Poa-Maoate",
+  "Ritisha Mistry",
+  "Steph Hoare",
+  "Jada Jacobs",
+  "Richard Evans",
+  "Ace Wiperi",
+  "Alphonso Goulding"
+].sort
 
-warriors = Team.create!(:name => "Warriors")
-lakers = Team.create!(:name => "Lakers")
-dragons = Team.create!(:name => "Dragons")
+users = user_list.map do |x|
+  first = x.split(' ')[0]
+  second = x.split(' ')[1]
 
-player = TeamRole.create!(:name => "Player")
-coach = TeamRole.create!(:name => "Coach")
-manager = TeamRole.create!(:name => "Manager")
+  User.create!(
+    :firstname => first,
+    :lastname => second,
+    :phone => "0800#{first}#{second}",
+    :dob => '2000-12-21',
+    :email => "#{first}@#{second}.com",
+    :password => "#{first}123#{second}"
+  )
+end
 
-team_member1 = TeamUserRole.create!(
-  :team => warriors,
-  :user => brian,
-  :team_role => player
-)
-team_member2 = TeamUserRole.create!(
-  :team => warriors,
-  :user => brian,
-  :team_role => coach
-)
-team_member3 = TeamUserRole.create!(
-  :team => warriors,
-  :user => lucy,
-  :team_role => manager
-)
+gems = Squad.create!(:name => 'GEMs')
+vapour = Squad.create!(:name => 'Vapour')
+social_mixed = Squad.create!(:name => 'Social Mixed')
+
+users.shuffle.each.with_index do |e, i|
+  break if i > 18
+  gems.users << e
+end
+
+users.shuffle.each.with_index do |e, i|
+  break if i > 12
+  vapour.users << e
+end
+
+users.shuffle.each.with_index do |e, i|
+  break if i > 15
+  social_mixed.users << e
+end
+
+# game1 = Event.create!(
+#   :name => 'Game vs Hunters',
+#   :start => '2017-07-07 00:00:00',
+#   :location => 'Hutt Park'
+# )
+# game2 = Event.create!(
+#   :name => 'Game vs Lowkey',
+#   :start => '2017-06-06 00:00:00',
+#   :location => 'Wakefield'
+# )
+# training1 = Event.create!(
+#   :name => 'Training',
+#   :start => '2017-12-01 00:00:00',
+#   :location => 'Petone Rec'
+# )

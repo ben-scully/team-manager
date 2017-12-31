@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :squads
   get 'events/new'
 
   get 'events/edit'
@@ -7,10 +8,6 @@ Rails.application.routes.draw do
 
   get 'events/index'
 
-  resources :team_events
-  resources :events
-  resources :team_roles
-  resources :team_user_roles
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     passwords: 'users/passwords',

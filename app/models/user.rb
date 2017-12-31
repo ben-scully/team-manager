@@ -4,8 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :team_user_roles
-  has_many :teams, through: :team_user_roles
+  has_and_belongs_to_many :squads
 
   def display_name
     "#{firstname} #{lastname}"

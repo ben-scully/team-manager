@@ -15,7 +15,7 @@
     <tr>
       <th>TeamName</th>
       <% TeamRole.all.distinct.each do |role| %>
-        <th>Role</th>
+        <th></th>
       <% end %>
       <th colspan="3"></th>
     </tr>
@@ -28,6 +28,7 @@
         <% team.roles_by_user(@user).each do |role| %>
           <td><%= role.display_name %></td>
         <% end %>
+        <td><%= link_to 'Show', team %></td>
       </tr>
     <% end %>
   </tbody>
