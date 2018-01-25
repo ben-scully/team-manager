@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Squad Member</h1>
+
+<p>
+  <%= @squad_member.display_name %>
+</p>
+
+<p>
+  <strong>Squad:</strong>
+  <%= @squad_member.squad.display_name %>
+
+  <br>
+
+  <strong>User:</strong>
+  <%= @squad_member.user.display_name %>
+
+  <br>
+
+  <strong>Status:</strong>
+  <%= @squad_member.status.humanize %>
+</p>
+
+<%= link_to 'Edit', [:edit, @squad_member.squad, @squad_member] %> |
+<%= link_to 'Back to Squad', [@squad_member.squad] %>

@@ -1,0 +1,6 @@
+<h1>Editing Game</h1>
+
+<%= render 'form', squad: @game.squad, game: @game %>
+
+<%= link_to 'Show', [@game.squad, @game] %> |
+<%= link_to 'Games', squad_games_path %>

@@ -10,19 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171228092633) do
+ActiveRecord::Schema.define(version: 20180124215645) do
+
+  create_table "game_members", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "squad_member_id", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_members_on_game_id"
+    t.index ["squad_member_id"], name: "index_game_members_on_squad_member_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "squad_id", null: false
+    t.string "name", default: "", null: false
+    t.datetime "start", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["squad_id"], name: "index_games_on_squad_id"
+  end
+
+  create_table "squad_members", force: :cascade do |t|
+    t.integer "squad_id", null: false
+    t.integer "user_id", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["squad_id"], name: "index_squad_members_on_squad_id"
+    t.index ["user_id"], name: "index_squad_members_on_user_id"
+  end
 
   create_table "squads", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "squads_users", id: false, force: :cascade do |t|
-    t.integer "squad_id"
-    t.integer "user_id"
-    t.index ["squad_id"], name: "index_squads_users_on_squad_id"
-    t.index ["user_id"], name: "index_squads_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

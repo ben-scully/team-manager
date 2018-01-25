@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  resources :squads
-  get 'events/new'
-
-  get 'events/edit'
-
-  get 'events/show'
-
-  get 'events/index'
-
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     passwords: 'users/passwords',
@@ -18,9 +9,12 @@ Rails.application.routes.draw do
 
   resources :users
 
-
-  resources :teams do
+  resources :squads do
+    resources :squad_members
+    resources :games do
+      resources :game_members
     end
+  end
 
   root to: "users#index"
 end

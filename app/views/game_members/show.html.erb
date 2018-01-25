@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Game Member</h1>
+
+<p>
+  <%= @game_member.display_name %>
+</p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @game_member.game.display_name %>
+
+  <br>
+
+  <strong>Squad:</strong>
+  <%= @game_member.game.squad.display_name %>
+
+  <br>
+
+  <strong>Squad Member:</strong>
+  <%= @game_member.squad_member.display_name %>
+
+  <br>
+
+  <strong>Status:</strong>
+  <%= @game_member.status.humanize %>
+</p>
+
+<%= link_to 'Edit', edit_squad_game_game_member_path(@game_member.game.squad, @game_member.game, @game_member) %> |
+<%= link_to 'Back to Game', [@game_member.game.squad, @game_member.game] %>

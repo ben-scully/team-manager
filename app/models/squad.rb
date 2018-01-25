@@ -1,6 +1,9 @@
 class Squad < ApplicationRecord
-  has_and_belongs_to_many :users
+  has_many :squad_members
+  has_many :games
 
+  validates :name, presence: true
+  
   def display_name
     "#{name}"
   end

@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Games</h1>
+
+<p>
+  <%= link_to 'New Game', new_squad_game_path(@squad) %>
+</p>
+
+<h4>List</h4>
+
+<table>
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= game.display_name %></td>
+        <td><%= link_to 'Show', [game.squad, game] %></td>
+        <td><%= link_to 'Edit', [:edit, game.squad, game] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

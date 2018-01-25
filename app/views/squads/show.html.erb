@@ -3,27 +3,55 @@
 <h1>Squad</h1>
 
 <p>
-  <strong>DisplayName:</strong>
   <%= @squad.display_name %>
 </p>
 
-<h2>Users</h2>
+<p>
+  <strong>Name</strong>
+  <%= @squad.name %>
+</p>
+
+<p>
+  <%= link_to 'Edit', edit_squad_path(@squad) %> |
+  <%= link_to 'Back to Squads', squads_path %>
+</p>
+
+<h2>Squad Members</h2>
+
+<p>
+  <%= link_to 'New Squad member', new_squad_squad_member_path(@squad) %>
+</p>
+
+<h4>List</h4>
 
 <table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <tbody>
-    <% @squad.users.each do |user| %>
+    <% @squad.squad_members.each do |squad_member| %>
       <tr>
-        <td><%= user.display_name %></td>
+        <td><%= squad_member.display_name %></td>
+        <td><%= link_to 'Show', [@squad, squad_member] %></td>
+        <td><%= link_to 'Edit', [:edit, @squad, squad_member] %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Edit', edit_squad_path(@squad) %> |
-<%= link_to 'Back', squads_path %>
+<h2>Games</h2>
+
+<p>
+  <%= link_to 'New Game', new_squad_game_path(@squad) %>
+</p>
+
+<h4>List</h4>
+
+<table>
+  <tbody>
+    <% @squad.games.each do |game| %>
+      <tr>
+        <td><%= game.display_name %></td>
+        <td><%= link_to 'Show', [@squad, game] %></td>
+        <td><%= link_to 'Edit', [:edit, @squad, game] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,39 @@
+<%= form_with(model: [squad, squad_member], local: true) do |form| %>
+  <% if squad_member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(squad_member.errors.count, "error") %> prohibited this squad_member from being saved:</h2>
+
+      <ul>
+      <% squad_member.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :squad_id, value: squad.id %>
+
+  <p>
+    <strong>Squad:</strong>
+    <%= squad.display_name %>
+  </p>
+
+  <% if squad_member.persisted? %>
+    <p>
+      <strong>User:</strong>
+      <%= squad_member.user.display_name %>
+    </p>
+  <% else %>
+    <div class="field">
+      <%= form.collection_select :user_id, User.all, :id, :display_name, prompt: true %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.collection_select :status, SquadMember.statuses.keys, :to_s, :to_s, prompt: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

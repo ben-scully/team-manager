@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1>User</h1>
+
 <p>
   <strong>Display Name:</strong>
   <%= @user.display_name %>
@@ -7,29 +9,3 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
-
-<h2>Teams</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>TeamName</th>
-      <% TeamRole.all.distinct.each do |role| %>
-        <th></th>
-      <% end %>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user.teams.distinct.each do |team| %>
-      <tr>
-        <td><%= team.display_name %></td>
-        <% team.roles_by_user(@user).each do |role| %>
-          <td><%= role.display_name %></td>
-        <% end %>
-        <td><%= link_to 'Show', team %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>

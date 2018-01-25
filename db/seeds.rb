@@ -57,33 +57,45 @@ gems = Squad.create!(:name => 'GEMs')
 vapour = Squad.create!(:name => 'Vapour')
 social_mixed = Squad.create!(:name => 'Social Mixed')
 
-users.shuffle.each.with_index do |e, i|
-  break if i > 18
-  gems.users << e
+users.shuffle!
+
+users.slice!(1..5).each.with_index do |e, i|
+  SquadMember.create!(:squad => gems, :user => e)
 end
 
-users.shuffle.each.with_index do |e, i|
-  break if i > 12
-  vapour.users << e
+users.slice!(1..7).each.with_index do |e, i|
+  SquadMember.create!(:squad => vapour, :user => e)
 end
 
-users.shuffle.each.with_index do |e, i|
-  break if i > 15
-  social_mixed.users << e
+users.slice!(1..3).each.with_index do |e, i|
+  SquadMember.create!(:squad => social_mixed, :user => e)
 end
 
-# game1 = Event.create!(
-#   :name => 'Game vs Hunters',
-#   :start => '2017-07-07 00:00:00',
-#   :location => 'Hutt Park'
-# )
-# game2 = Event.create!(
-#   :name => 'Game vs Lowkey',
-#   :start => '2017-06-06 00:00:00',
-#   :location => 'Wakefield'
-# )
-# training1 = Event.create!(
-#   :name => 'Training',
-#   :start => '2017-12-01 00:00:00',
-#   :location => 'Petone Rec'
-# )
+game1 = Game.create!(
+  :squad => gems,
+  :name => 'vs Hunters',
+  :start => '2017-07-07 00:00:00',
+)
+game2 = Game.create!(
+  :squad => gems,
+  :name => 'vs Lowkey',
+  :start => '2017-06-06 00:00:00',
+)
+game3 = Game.create!(
+  :squad => vapour,
+  :name => 'vs SumthinsBurning',
+  :start => '2017-03-12 00:00:00',
+)
+game4 = Game.create!(
+  :squad => social_mixed,
+  :name => 'vs TigerLions',
+  :start => '2017-04-20 00:00:00',
+)
+
+gems.squad_members.each.with_index do |squad_member, i|
+  return if i > 2
+  GameMember.create!(
+    :game => game1,
+    :squad_member => squad_member
+  )
+end
