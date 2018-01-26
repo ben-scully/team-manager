@@ -3,9 +3,33 @@
 <h1>User</h1>
 
 <p>
-  <strong>Display Name:</strong>
   <%= @user.display_name %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<p>
+  <strong>Email</strong>
+  <%= @user.email %>
+
+  <br>
+
+  <strong>First</strong>
+  <%= @user.firstname %>
+
+  <br>
+
+  <strong>Last</strong>
+  <%= @user.lastname %>
+
+  <br>
+
+  <strong>Phone</strong>
+  <%= @user.phone %>
+
+  <br>
+
+  <strong>DOB</strong>
+  <%= @user.dob %>
+</p>
+
+<%= link_to 'Edit', edit_user_registration_path(@user) %> |
 <%= link_to 'Back', users_path %>

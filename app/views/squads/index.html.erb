@@ -6,11 +6,25 @@
   <%= link_to 'New Squad', new_squad_path %>
 </p>
 
-<h4>List</h4>
+<h4>Active</h4>
 
 <table>
   <tbody>
-    <% @squads.each do |squad| %>
+    <% @squads.active.each do |squad| %>
+      <tr>
+        <td><%= squad.display_name %></td>
+        <td><%= link_to 'Show', squad %></td>
+        <td><%= link_to 'Edit', edit_squad_path(squad) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4>Inactive</h4>
+
+<table>
+  <tbody>
+    <% @squads.inactive.each do |squad| %>
       <tr>
         <td><%= squad.display_name %></td>
         <td><%= link_to 'Show', squad %></td>

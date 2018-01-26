@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   has_many :squad_members
 
+  # has_many :squads, -> squad_members.map { |x| x.squad }
+
   def display_name
     "#{firstname} #{lastname}"
   end

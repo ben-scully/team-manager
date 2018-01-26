@@ -3,6 +3,7 @@ class CreateGames < ActiveRecord::Migration[5.1]
     create_table :games do |t|
       t.references :squad, null: false
 
+      t.column :status, :integer, default: 0, null: false
       t.string :name, default: "", null: false
       t.datetime :start, null: false
 

@@ -1,5 +1,5 @@
 <h1>New Squad Member</h1>
 
-<%= render 'form', squad: @squad, squad_member: @squad_member %>
+<%= render 'form', squad: @squad_member.squad, squad_member: @squad_member, users: @users %>
 
-<%= link_to 'Back', [@squad, @squad_member] %>
+<%= link_to 'Back to Squad', [@squad_member.squad] %>

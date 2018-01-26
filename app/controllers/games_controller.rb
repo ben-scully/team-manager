@@ -79,6 +79,6 @@ class GamesController < ApplicationController
   def game_params
     # TODO can/should I use :squad_id or just :squad?
     # the above issue/question is for all controllers
-    params.require(:game).permit(:name, :start, :squad_id)
+    params.require(:game).permit(:status, :name, :start, :squad_id)
   end
 end

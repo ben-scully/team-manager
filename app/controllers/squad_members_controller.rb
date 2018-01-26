@@ -16,14 +16,24 @@ class SquadMembersController < ApplicationController
 
   # GET /squad_members/new
   def new
-    @squad = Squad.find(params[:squad_id])
-    @squad_member = SquadMember.new(squad: @squad)
+    squad = Squad.find(params[:squad_id])
+    @users = User.all
+    # TODO put this back post testing
+    # @users = User.where.not(id: squad.squad_members.active.map(&:user_id))
+    @squad_member = SquadMember.new(squad: squad)
+
+    raise unless squad == @squad_member.squad
   end
 
   # GET /squad_members/1/edit
   def edit
-    @squad = Squad.find(params[:squad_id])
+    squad = Squad.find(params[:squad_id])
+    @users = User.all
+    # TODO put this back post testing
+    # @users = User.where.not(id: squad.squad_members.map(&:user_id))
     @squad_member = SquadMember.find(params[:id])
+
+    raise unless squad == @squad_member.squad
   end
 
   # POST /squad_members
@@ -36,6 +46,9 @@ class SquadMembersController < ApplicationController
         format.html { redirect_to [@squad_member.squad, @squad_member], notice: 'Squad member was successfully created.' }
         format.json { render :show, status: :created, location: @squad_member }
       else
+        @users = User.all
+        # TODO put this back post testing
+        # @users = User.where.not(id: @squad_member.squad.squad_members.active.map(&:user_id))
         format.html { render :new }
         format.json { render json: @squad_member.errors, status: :unprocessable_entity }
       end
@@ -52,6 +65,9 @@ class SquadMembersController < ApplicationController
         format.html { redirect_to [@squad_member.squad, @squad_member], notice: 'Squad member was successfully updated.' }
         format.json { render :show, status: :ok, location: @squad_member }
       else
+        @users = User.all
+        # TODO put this back post testing
+        # @users = User.where.not(id: @squad_member.squad.squad_members.active.map(&:user_id))
         format.html { render :edit }
         format.json { render json: @squad_member.errors, status: :unprocessable_entity }
       end

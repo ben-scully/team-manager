@@ -4,7 +4,7 @@ class CreateSquadMembers < ActiveRecord::Migration[5.1]
       t.references :squad, null: false
       t.references :user, null: false
 
-      t.column :status, :integer, default: 0
+      t.column :status, :integer, default: 0, null: false
 
       t.timestamps
     end

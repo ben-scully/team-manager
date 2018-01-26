@@ -16,16 +16,24 @@ class GameMembersController < ApplicationController
 
   # GET /game_members/new
   def new
-    @squad = Squad.find(params[:squad_id])
-    @game = Game.find(params[:game_id])
-    @game_member = GameMember.new
+    squad = Squad.find(params[:squad_id])
+    game = Game.find(params[:game_id])
+    @game_member = GameMember.new(game: game)
+    @squad_members = @game_member.game.squad.squad_members
+
+    # TODO is this required?
+    raise unless squad == game.squad
   end
 
   # GET /game_members/1/edit
   def edit
-    @squad = Squad.find(params[:squad_id])
-    @game = Game.find(params[:game_id])
+    squad = Squad.find(params[:squad_id])
+    game = Game.find(params[:game_id])
     @game_member = GameMember.find(params[:id])
+    @squad_members = @game_member.game.squad.squad_members
+
+    # TODO is this required?
+    raise unless squad == game.squad
   end
 
   # POST /game_members
@@ -38,7 +46,8 @@ class GameMembersController < ApplicationController
         format.html { redirect_to [@game_member.game.squad, @game_member.game, @game_member], notice: 'Game member was successfully created.' }
         format.json { render :show, status: :created, location: @game_member }
       else
-        @squad = Squad.find(params[:squad_id])
+        # TODO limit
+        @squad_members = @game_member.game.squad.squad_members
         format.html { render :new }
         format.json { render json: @game_member.errors, status: :unprocessable_entity }
       end
@@ -55,7 +64,8 @@ class GameMembersController < ApplicationController
         format.html { redirect_to [@game_member.game.squad, @game_member.game, @game_member], notice: 'Game member was successfully updated.' }
         format.json { render :show, status: :ok, location: @game_member }
       else
-        @squad = Squad.find(params[:squad_id])
+        # TODO limit
+        @squad_members = @game_member.game.squad.squad_members
         format.html { render :edit }
         format.json { render json: @game_member.errors, status: :unprocessable_entity }
       end

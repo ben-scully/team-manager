@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20180124215645) do
   create_table "game_members", force: :cascade do |t|
     t.integer "game_id", null: false
     t.integer "squad_member_id", null: false
-    t.integer "status", default: 0
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_game_members_on_game_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20180124215645) do
 
   create_table "games", force: :cascade do |t|
     t.integer "squad_id", null: false
+    t.integer "status", default: 0, null: false
     t.string "name", default: "", null: false
     t.datetime "start", null: false
     t.datetime "created_at", null: false
@@ -34,7 +35,7 @@ ActiveRecord::Schema.define(version: 20180124215645) do
   create_table "squad_members", force: :cascade do |t|
     t.integer "squad_id", null: false
     t.integer "user_id", null: false
-    t.integer "status", default: 0
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["squad_id"], name: "index_squad_members_on_squad_id"
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 20180124215645) do
   end
 
   create_table "squads", force: :cascade do |t|
+    t.integer "status", default: 0, null: false
     t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

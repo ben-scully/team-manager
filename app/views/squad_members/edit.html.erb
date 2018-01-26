@@ -1,6 +1,6 @@
 <h1>Editing Squad Member</h1>
 
-<%= render 'form', squad: @squad, squad_member: @squad_member %>
+<%= render 'form', squad: @squad_member.squad, squad_member: @squad_member, users: @users %>
 
-<%= link_to 'Show', [@squad, @squad_member] %> |
-<%= link_to 'Back', squad_squad_members_path %>
+<%= link_to 'Show', [@squad_member.squad, @squad_member] %> |
+<%= link_to 'Back to Squad', [@squad_member.squad] %>

@@ -57,17 +57,17 @@ gems = Squad.create!(:name => 'GEMs')
 vapour = Squad.create!(:name => 'Vapour')
 social_mixed = Squad.create!(:name => 'Social Mixed')
 
-users.shuffle!
+# users.shuffle!
 
-users.slice!(1..5).each.with_index do |e, i|
+users.shuffle.slice(1..6).each.with_index do |e, i|
   SquadMember.create!(:squad => gems, :user => e)
 end
 
-users.slice!(1..7).each.with_index do |e, i|
+users.shuffle.slice(1..5).each.with_index do |e, i|
   SquadMember.create!(:squad => vapour, :user => e)
 end
 
-users.slice!(1..3).each.with_index do |e, i|
+users.shuffle.slice(1..7).each.with_index do |e, i|
   SquadMember.create!(:squad => social_mixed, :user => e)
 end
 
