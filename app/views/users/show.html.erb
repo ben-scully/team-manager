@@ -29,6 +29,11 @@
 
   <strong>DOB</strong>
   <%= @user.dob %>
+
+  <br>
+
+  <strong>Status</strong>
+  <%= @user.status.humanize %>
 </p>
 
 <%= link_to 'Edit', edit_user_registration_path(@user) %> |

@@ -23,15 +23,14 @@
       <strong>User:</strong>
       <%= squad_member.user.display_name %>
     </p>
+    <div class="field">
+      <%= form.collection_select :status, SquadMember.statuses.keys, :to_s, :humanize, prompt: true %>
+    </div>
   <% else %>
     <div class="field">
       <%= form.collection_select :user_id, users, :id, :display_name, prompt: true %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.collection_select :status, SquadMember.statuses.keys, :to_s, :humanize, prompt: true %>
-  </div>
 
   <div class="actions">
     <%= form.submit %>

@@ -17,9 +17,8 @@ class SquadMembersController < ApplicationController
   # GET /squad_members/new
   def new
     squad = Squad.find(params[:squad_id])
-    @users = User.all
-    # TODO put this back post testing
-    # @users = User.where.not(id: squad.squad_members.active.map(&:user_id))
+
+    @users = User.active.where.not(id: squad.squad_members.active.map(&:user_id))
     @squad_member = SquadMember.new(squad: squad)
 
     raise unless squad == @squad_member.squad
@@ -28,9 +27,8 @@ class SquadMembersController < ApplicationController
   # GET /squad_members/1/edit
   def edit
     squad = Squad.find(params[:squad_id])
-    @users = User.all
-    # TODO put this back post testing
-    # @users = User.where.not(id: squad.squad_members.map(&:user_id))
+
+    @users = User.active.where.not(id: squad.squad_members.active.map(&:user_id))
     @squad_member = SquadMember.find(params[:id])
 
     raise unless squad == @squad_member.squad

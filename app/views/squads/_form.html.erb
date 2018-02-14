@@ -16,9 +16,11 @@
     <%= form.text_field :name, autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= form.collection_select :status, Squad.statuses.keys, :to_s, :humanize, prompt: true %>
-  </div>
+  <% if squad.persisted? %>
+    <div class="field">
+      <%= form.collection_select :status, Squad.statuses.keys, :to_s, :humanize, prompt: true %>
+    </div>
+  <% end %>  
 
   <div class="actions">
     <%= form.submit %>

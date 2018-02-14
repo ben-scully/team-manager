@@ -70,6 +70,6 @@ class SquadsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def squad_params
-    params.require(:squad).permit(:name)
+    params.require(:squad).permit(:name, :status)
   end
 end

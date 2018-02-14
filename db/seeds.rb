@@ -4,7 +4,6 @@ user_list = [
   "Matt Wilkes",
   "Tammy Ferreria",
   "Michael Poa",
-  "Ben Scully",
   "Lisa Emery",
   "Chris Jospeh",
   "Ruth Prime",

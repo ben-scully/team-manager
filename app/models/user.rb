@@ -3,9 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :squad_members
+  enum status: [ :active, :inactive ]
 
-  # has_many :squads, -> squad_members.map { |x| x.squad }
+  has_many :squad_members
 
   def display_name
     "#{firstname} #{lastname}"
