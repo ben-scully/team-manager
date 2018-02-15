@@ -47,7 +47,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.update(game_params)
-        format.html { redirect_to [@game.squad, @game], notice: 'Game was successfully updated.' }
+        format.html { redirect_to [@game.series, @game], notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else
         @series = @game.series

@@ -20,8 +20,6 @@ class SquadMembersController < ApplicationController
 
     @users = User.active.where.not(id: squad.squad_members.active.map(&:user_id))
     @squad_member = SquadMember.new(squad: squad)
-
-    raise unless squad == @squad_member.squad
   end
 
   # GET /squad_members/1/edit
@@ -30,8 +28,6 @@ class SquadMembersController < ApplicationController
 
     @users = User.active.where.not(id: squad.squad_members.active.map(&:user_id))
     @squad_member = SquadMember.find(params[:id])
-
-    raise unless squad == @squad_member.squad
   end
 
   # POST /squad_members
