@@ -13,7 +13,7 @@
   <br>
 
   <strong>Squad:</strong>
-  <%= @game_member.game.squad.display_name %>
+  <%= @game_member.game.series.squad.display_name %>
 
   <br>
 
@@ -26,5 +26,5 @@
   <%= @game_member.status.humanize %>
 </p>
 
-<%= link_to 'Edit', edit_squad_game_game_member_path(@game_member.game.squad, @game_member.game, @game_member) %> |
-<%= link_to 'Back to Game', [@game_member.game.squad, @game_member.game] %>
+<%= link_to 'Edit', edit_game_game_member_path(@game_member.game, @game_member) %> |
+<%= link_to 'Back to Game', [@game_member.game] %>

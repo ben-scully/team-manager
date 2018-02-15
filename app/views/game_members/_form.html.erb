@@ -1,4 +1,4 @@
-<%= form_with(model: [squad, game, game_member], local: true) do |form| %>
+<%= form_with(model: [game, game_member], local: true) do |form| %>
   <% if game_member.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(game_member.errors.count, "error") %> prohibited this game_member from being saved:</h2>
@@ -11,9 +11,7 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :squad_id, value: squad.id %>
   <%= form.hidden_field :game_id, value: game.id %>
-
 
   <% if game_member.persisted? %>
     <p>
@@ -27,13 +25,17 @@
       <br>
 
       <strong>Squad:</strong>
-      <%= squad.display_name %>
+      <%= game.series.squad.display_name %>
 
       <br>
 
       <strong>Squad Member:</strong>
       <%= game_member.squad_member.display_name %>
     </p>
+
+    <div class="field">
+      <%= form.collection_select :status, GameMember.statuses.keys, :to_s, :humanize, prompt: true %>
+    </div>
   <% else %>
     <p>
       <strong>Game:</strong>
@@ -42,17 +44,18 @@
       <br>
 
       <strong>Squad:</strong>
-      <%= squad.display_name %>
+      <%= game.series.squad.display_name %>
+
+      <br>
+
+      <strong>Status:</strong>
+      <%= game_member.status.humanize %>
     </p>
 
     <div class="field">
       <%= form.collection_select :squad_member_id, squad_members, :id, :display_name, prompt: true %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.collection_select :status, GameMember.statuses.keys, :to_s, :humanize, prompt: true %>
-  </div>
 
   <div class="actions">
     <%= form.submit %>

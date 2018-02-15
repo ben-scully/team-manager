@@ -5,7 +5,6 @@ class GameMembersController < ApplicationController
   # GET /game_members.json
   def index
     @game = Game.find(params[:game_id])
-    @game_members = GameMember.where(game: @game)
   end
 
   # GET /game_members/1
@@ -16,24 +15,18 @@ class GameMembersController < ApplicationController
 
   # GET /game_members/new
   def new
-    squad = Squad.find(params[:squad_id])
     game = Game.find(params[:game_id])
     @game_member = GameMember.new(game: game)
-    @squad_members = @game_member.game.squad.squad_members
-
-    # TODO is this required?
-    raise unless squad == game.squad
+    # @squad_members = game.series.series_members
+    @squad_members = game.series.squad.squad_members
   end
 
   # GET /game_members/1/edit
   def edit
-    squad = Squad.find(params[:squad_id])
     game = Game.find(params[:game_id])
     @game_member = GameMember.find(params[:id])
-    @squad_members = @game_member.game.squad.squad_members
-
-    # TODO is this required?
-    raise unless squad == game.squad
+    # @squad_members = game.series.series_members
+    @squad_members = game.series.squad.squad_members
   end
 
   # POST /game_members
@@ -43,7 +36,7 @@ class GameMembersController < ApplicationController
 
     respond_to do |format|
       if @game_member.save
-        format.html { redirect_to [@game_member.game.squad, @game_member.game, @game_member], notice: 'Game member was successfully created.' }
+        format.html { redirect_to [@game_member.game, @game_member], notice: 'Game member was successfully created.' }
         format.json { render :show, status: :created, location: @game_member }
       else
         # TODO limit
@@ -61,7 +54,7 @@ class GameMembersController < ApplicationController
 
     respond_to do |format|
       if @game_member.update(game_member_params)
-        format.html { redirect_to [@game_member.game.squad, @game_member.game, @game_member], notice: 'Game member was successfully updated.' }
+        format.html { redirect_to [@game_member.game, @game_member], notice: 'Game member was successfully updated.' }
         format.json { render :show, status: :ok, location: @game_member }
       else
         # TODO limit

@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Series</h1>
+
+<p>
+  <%= @series.display_name %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @series.name %>
+
+  <br>
+
+  <strong>Squad:</strong>
+  <%= @series.squad.display_name %>
+
+  <br>
+
+  <strong>Status:</strong>
+  <%= @series.status.humanize %>
+</p>
+
+<%= link_to 'Edit', [:edit, @series.squad, @series] %> |
+<%= link_to 'Back to Squad', [@series.squad] %>
+
+<h2>Games</h2>
+
+<p>
+  <%= link_to 'New Game', new_series_game_path(@series) %>
+</p>
+
+<h4>Active</h4>
+
+<table>
+  <tbody>
+    <% @series.games.active.each do |game| %>
+      <tr>
+        <td><%= game.display_name %></td>
+        <td><%= link_to 'Show', [@series, game] %></td>
+        <td><%= link_to 'Edit', [:edit, @series, game] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4>Inactive</h4>
+
+<table>
+  <tbody>
+    <% @series.games.inactive.each do |game| %>
+      <tr>
+        <td><%= game.display_name %></td>
+        <td><%= link_to 'Show', [@series, game] %></td>
+        <td><%= link_to 'Edit', [:edit, @series, game] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

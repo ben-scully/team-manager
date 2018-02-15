@@ -10,7 +10,7 @@
 
 <table>
   <tbody>
-    <% @squad_members.each do |squad_member| %>
+    <% squad_members.each do |squad_member| %>
       <tr>
         <td><%= squad_member.display_name %></td>
         <td><%= link_to 'Show', [squad_member.squad, squad_member] %></td>

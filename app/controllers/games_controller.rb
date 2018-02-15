@@ -3,8 +3,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @squad = Squad.find(params[:squad_id])
-    @games = Game.where(squad: @squad)
+    @series = Series.find(params[:series_id])
   end
 
   # GET /games/1
@@ -15,8 +14,8 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
-    squad = Squad.find(params[:squad_id])
-    @game = Game.new(squad: squad)
+    series = Series.find(params[:series_id])
+    @game = Game.new(series: series)
   end
 
   # GET /games/1/edit
@@ -31,10 +30,10 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to [@game.squad, @game], notice: 'Game was successfully created.' }
+        format.html { redirect_to [@game.series, @game], notice: 'Game was successfully created.' }
         format.json { render :show, status: :created, location: @game }
       else
-        @squad = Squad.find(params[:squad_id])
+        @series = @game.series
         format.html { render :new }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
@@ -51,7 +50,7 @@ class GamesController < ApplicationController
         format.html { redirect_to [@game.squad, @game], notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else
-        @squad = @game.squad
+        @series = @game.series
         format.html { render :edit }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
@@ -79,6 +78,6 @@ class GamesController < ApplicationController
   def game_params
     # TODO can/should I use :squad_id or just :squad?
     # the above issue/question is for all controllers
-    params.require(:game).permit(:status, :name, :start, :squad_id)
+    params.require(:game).permit(:status, :name, :start, :series_id)
   end
 end

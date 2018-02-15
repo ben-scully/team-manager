@@ -1,6 +1,6 @@
 <h1>Editing Game Member</h1>
 
-<%= render 'form', squad: @game_member.game.squad, game: @game_member.game, game_member: @game_member, squad_members: @squad_members %>
+<%= render 'form', game: @game_member.game, game_member: @game_member, squad_members: @squad_members %>
 
-<%= link_to 'Show', [@game_member.game.squad, @game_member.game, @game_member] %> |
-<%= link_to 'Back to Game', [@game_member.game.squad, @game_member.game] %>
+<%= link_to 'Show', [@game_member.game, @game_member] %> |
+<%= link_to 'Back to Game', [@game_member.game] %>

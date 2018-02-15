@@ -1,7 +1,7 @@
 class Game < ApplicationRecord
   enum status: [ :active, :inactive ]
 
-  belongs_to :squad
+  belongs_to :series
   has_many :game_members
 
   validates :name, presence: true

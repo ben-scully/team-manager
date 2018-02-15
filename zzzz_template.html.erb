@@ -1,3 +1,40 @@
 <td><%= link_to 'Show', squad_squad_member_url %></td>
 <td><%= link_to 'Edit', edit_squad_squad_member_path(squad_member) %></td>
 <td><%= link_to 'Destroy', squad_squad_member(squad_member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+
+
+
+<h2>Games</h2>
+
+<p>
+  <%= link_to 'New Game', new_squad_game_path(@squad) %>
+</p>
+
+<h4>Active</h4>
+
+<table>
+  <tbody>
+    <% @squad.games.active.each do |game| %>
+      <tr>
+        <td><%= game.display_name %></td>
+        <td><%= link_to 'Show', [@squad, game] %></td>
+        <td><%= link_to 'Edit', [:edit, @squad, game] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4>Inactive</h4>
+
+<table>
+  <tbody>
+    <% @squad.games.inactive.each do |game| %>
+      <tr>
+        <td><%= game.display_name %></td>
+        <td><%= link_to 'Show', [@squad, game] %></td>
+        <td><%= link_to 'Edit', [:edit, @squad, game] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

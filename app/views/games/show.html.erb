@@ -14,15 +14,20 @@
 
   <strong>Start</strong>
   <%= @game.start %>
+
+  <br>
+
+  <strong>Series</strong>
+  <%= @game.series.display_name %>
 </p>
 
-<%= link_to 'Edit', [:edit, @game.squad, @game] %> |
-<%= link_to 'Back to Squad', @game.squad %>
+<%= link_to 'Edit', [:edit, @game.series, @game] %> |
+<%= link_to 'Back to Series', @game.series %>
 
 <h2>Game Members</h2>
 
 <p>
-  <%= link_to 'New Game member', new_squad_game_game_member_path(@game.squad, @game) %>
+  <%= link_to 'New Game member', new_game_game_member_path(@game) %>
 </p>
 
 <h4>Active</h4>
@@ -32,8 +37,8 @@
     <% @game.game_members.active.each do |game_member| %>
       <tr>
         <td><%= game_member.display_name %></td>
-        <td><%= link_to 'Show', [@game.squad, @game, game_member] %></td>
-        <td><%= link_to 'Edit', [:edit, @game.squad, @game, game_member] %></td>
+        <td><%= link_to 'Show', [@game, game_member] %></td>
+        <td><%= link_to 'Edit', [:edit, @game, game_member] %></td>
       </tr>
     <% end %>
   </tbody>
@@ -46,8 +51,8 @@
     <% @game.game_members.inactive.each do |game_member| %>
       <tr>
         <td><%= game_member.display_name %></td>
-        <td><%= link_to 'Show', [@game.squad, @game, game_member] %></td>
-        <td><%= link_to 'Edit', [:edit, @game.squad, @game, game_member] %></td>
+        <td><%= link_to 'Show', [@game, game_member] %></td>
+        <td><%= link_to 'Edit', [:edit, @game, game_member] %></td>
       </tr>
     <% end %>
   </tbody>

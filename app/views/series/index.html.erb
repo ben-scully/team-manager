@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Series</h1>
+
+<p>
+  <strong>Squad:</strong>
+  <%= @squad.display_name %>
+</p>
+
+<p>
+  <%= link_to 'Back to Squad', [@squad] %>
+</p>
+
+<p>
+  <%= link_to 'New Series', new_squad_series_path %>
+</p>
+
+<h4>Active</h4>
+
+<table>
+  <tbody>
+    <% @squad.series.active.each do |series| %>
+      <tr>
+        <td><%= series.display_name %></td>
+        <td><%= link_to 'Show', [series.squad, series] %></td>
+        <td><%= link_to 'Edit', [:edit, series.squad, series] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4>Inactive</h4>
+
+<table>
+  <tbody>
+    <% @squad.series.inactive.each do |series| %>
+      <tr>
+        <td><%= series.display_name %></td>
+        <td><%= link_to 'Show', [series.squad, series] %></td>
+        <td><%= link_to 'Edit', [:edit, series.squad, series] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

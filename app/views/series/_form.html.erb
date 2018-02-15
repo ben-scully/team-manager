@@ -1,0 +1,30 @@
+<%= form_with(model: [squad, series], local: true) do |form| %>
+  <% if series.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(series.errors.count, "error") %> prohibited this series from being saved:</h2>
+
+      <ul>
+      <% series.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :squad_id, value: squad.id %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :series_name %>
+  </div>
+
+  <% if series.persisted? %>
+    <div class="field">
+      <%= form.collection_select :status, Series.statuses.keys, :to_s, :humanize, prompt: true %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

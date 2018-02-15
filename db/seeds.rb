@@ -70,31 +70,48 @@ users.shuffle.slice(1..7).each.with_index do |e, i|
   SquadMember.create!(:squad => social_mixed, :user => e)
 end
 
-game1 = Game.create!(
+series1 = Series.create!(
   :squad => gems,
+  :name => 'Monday Porirua Module',
+)
+series2 = Series.create!(
+  :squad => gems,
+  :name => 'SuperSeries',
+)
+series3 = Series.create!(
+  :squad => vapour,
+  :name => 'Wednesday Wakefield Module',
+)
+series4 = Series.create!(
+  :squad => social_mixed,
+  :name => 'Tuesday Wakefield Module',
+)
+
+game1 = Game.create!(
+  :series => series1,
   :name => 'vs Hunters',
   :start => '2017-07-07 00:00:00',
 )
 game2 = Game.create!(
-  :squad => gems,
+  :series => series2,
   :name => 'vs Lowkey',
   :start => '2017-06-06 00:00:00',
 )
 game3 = Game.create!(
-  :squad => vapour,
+  :series => series3,
   :name => 'vs SumthinsBurning',
   :start => '2017-03-12 00:00:00',
 )
 game4 = Game.create!(
-  :squad => social_mixed,
+  :series => series4,
   :name => 'vs TigerLions',
   :start => '2017-04-20 00:00:00',
 )
 
-gems.squad_members.each.with_index do |squad_member, i|
-  return if i > 2
-  GameMember.create!(
-    :game => game1,
-    :squad_member => squad_member
-  )
-end
+# gems.squad_members.each.with_index do |squad_member, i|
+#   return if i > 2
+#   GameMember.create!(
+#     :game => game1,
+#     :squad_member => squad_member
+#   )
+# end

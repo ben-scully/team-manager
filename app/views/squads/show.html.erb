@@ -55,21 +55,21 @@
   </tbody>
 </table>
 
-<h2>Games</h2>
+<h2>Series</h2>
 
 <p>
-  <%= link_to 'New Game', new_squad_game_path(@squad) %>
+  <%= link_to 'New Series', new_squad_series_path(@squad) %>
 </p>
 
 <h4>Active</h4>
 
 <table>
   <tbody>
-    <% @squad.games.active.each do |game| %>
+    <% @squad.series.active.each do |series| %>
       <tr>
-        <td><%= game.display_name %></td>
-        <td><%= link_to 'Show', [@squad, game] %></td>
-        <td><%= link_to 'Edit', [:edit, @squad, game] %></td>
+        <td><%= series.display_name %></td>
+        <td><%= link_to 'Show', [@squad, series] %></td>
+        <td><%= link_to 'Edit', [:edit, @squad, series] %></td>
       </tr>
     <% end %>
   </tbody>
@@ -79,11 +79,11 @@
 
 <table>
   <tbody>
-    <% @squad.games.inactive.each do |game| %>
+    <% @squad.series.inactive.each do |series| %>
       <tr>
-        <td><%= game.display_name %></td>
-        <td><%= link_to 'Show', [@squad, game] %></td>
-        <td><%= link_to 'Edit', [:edit, @squad, game] %></td>
+        <td><%= series.display_name %></td>
+        <td><%= link_to 'Show', [@squad, series] %></td>
+        <td><%= link_to 'Edit', [:edit, @squad, series] %></td>
       </tr>
     <% end %>
   </tbody>
